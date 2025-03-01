@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y Online Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+        }
+        input, select, button {
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        button {
+            background: green;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background: darkgreen;
+        }
+        .whatsapp-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #25D366;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Y Online Order - Basic</h2>
+        <form id="orderForm" action="https://formsubmit.co/ssy200913@gmail.com“ method="POST">
+            <label>Name (optional):</label>
+            <input type="text" name="name">
+
+            <label>QTY (required):</label>
+            <input type="number" name="qty" required>
+
+            <label>Colour:</label>
+            <input type="text" name="colour">
+
+            <label>Type:</label>
+            <select name="type">
+                <option value="price low">Price Low</option>
+                <option value="any">Any</option>
+            </select>
+
+            <label>Return:</label>
+            <select name="return">
+                <option value="only return">Only Return</option>
+                <option value="any">Any</option>
+            </select>
+
+            <label>Payment:</label>
+            <select name="payment">
+                <option value="cash">Cash</option>
+                <option value="card">Card</option>
+                <option value="loan">Loan</option>
+            </select>
+
+            <label>Delivery:</label>
+            <select name="delivery">
+                <option value="soon">Soon</option>
+                <option value="any">Any</option>
+            </select>
+
+            <label>Phone/E-mail:</label>
+            <input type="text" name="contact" required>
+
+            <p>Searching fee is Rs.5/= with information.</p>
+            <label>
+                <input type="checkbox" required> I agree to the terms and conditions.
+            </label>
+
+            <button type="submit">Submit Order</button>
+        </form>
+
+        <a id="whatsappLink" class="whatsapp-link" href="#" target="_blank">Send via WhatsApp</a>
+    </div>
+
+    <script>
+        document.getElementById("orderForm").addEventListener("submit", function(event) {
+            alert("Your order has been submitted successfully!");
+        });
+
+        document.getElementById("whatsappLink").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            let name = document.querySelector('input[name="name"]').value || "<optional>";
+            let qty = document.querySelector('input[name="qty"]').value;
+            let colour = document.querySelector('input[name="colour"]').value || "<*>";
+            let type = document.querySelector('select[name="type"]').value;
+            let returnOption = document.querySelector('select[name="return"]').value;
+            let payment = document.querySelector('select[name="payment"]').value;
+            let delivery = document.querySelector('select[name="delivery"]').value;
+            let contact = document.querySelector('input[name="contact"]').value;
+
+            if (!qty || !contact) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            let message = `Y online order Basic%0A%0A`
+                + `Name:- ${name}%0A`
+                + `QTY:- ${qty}%0A`
+                + `Colour:- ${colour}%0A`
+                + `Type:- ${type}%0A`
+                + `Return:- ${returnOption}%0A`
+                + `Payment:- ${payment}%0A`
+                + `Delivery:- ${delivery}%0A`
+                + `Phone/E-mail:- ${contact}%0A%0A`
+                + `Searching fee is Rs.5/= with information.%0A%0A`
+                + `I agree the terms and conditions that were said.%0A%0A`
+                + `Sign:- ....................................%0A%0A`
+                + `Powered by Y`;
+
+            let whatsappURL = `https://wa.me/+9470175058?text=${message}`;
+            window.open(whatsappURL, "_blank");
+        });
+    </script>
+</body>
+</html>
